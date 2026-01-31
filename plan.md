@@ -20,3 +20,5 @@
 - レシピ
 - タグ
 
+## データベース保存方法
+- resources/database.json
