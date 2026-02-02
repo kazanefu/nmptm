@@ -24,11 +24,10 @@ impl Storage {
     }
 
     pub fn save(&self, db: &AppDatabase) -> anyhow::Result<()> {
-        if let Some(parent) = self.file_path.parent() {
-            if !parent.exists() {
+        if let Some(parent) = self.file_path.parent()
+            && !parent.exists() {
                 fs::create_dir_all(parent)?;
             }
-        }
 
         let content = serde_json::to_string_pretty(db)?;
         fs::write(&self.file_path, content)?;
